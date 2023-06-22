@@ -21,7 +21,22 @@ class Calculator {
     calculateJupiterAge() {
         const jupiterAge = this.number / 11.86;
         return Math.round(jupiterAge * 100) / 100;
+   
     }
+
+    calculateYearsPassed(age, pastBirthYear) {
+        const earthYearsPassed = age - pastBirthYear;
+        const yearsPassed = new Calculator(earthYearsPassed)
+        const marsYearsPassed = yearsPassed.calculateMarsAge();
+        const mercuryYearsPassed = yearsPassed.calculateMercuryAge();
+        const venusYearsPassed = yearsPassed.calculateVenusAge();
+        const jupiterYearsPassed = yearsPassed.calculateJupiterAge();
+
+        return {earthYearsPassed, marsYearsPassed, mercuryYearsPassed, venusYearsPassed, jupiterYearsPassed};
+    }
+
+
+    // calculateYearsYetToPass()
 }
 
 describe('calculateAge', () => {
@@ -49,3 +64,20 @@ describe('calculateAge', () => {
         expect(jupiterAge).toBe(2.11);
     });
 });
+
+
+describe('calculateAge', () => {
+    test('it should take a person\'s age in years and return their age in Mars years', () => {
+        const calculator = new Calculator();
+        const yearsPassed = calculator.calculateYearsPassed(56, 43);
+        expect(yearsPassed).toEqual({
+            earthYearsPassed: 13, 
+            marsYearsPassed: 6.91, 
+            mercuryYearsPassed: 54.17, 
+            venusYearsPassed: 20.97, 
+            jupiterYearsPassed: 1.1
+        });
+    });
+
+});
+
