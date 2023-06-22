@@ -36,6 +36,25 @@ class Calculator {
     }
 
 
+    calculateYearsYetToPass(age, futureAge) {
+    const earthYearsYetToPass = futureAge - age;
+    const years = new Calculator(earthYearsYetToPass);
+    const marsYearsYetToPass = years.calculateMarsAge();
+    const mercuryYearsYetToPass = years.calculateMercuryAge();
+    const venusYearsYetToPass = years.calculateVenusAge();
+    const jupiterYearsYetToPass = years.calculateJupiterAge();
+
+    return {
+        earthYearsYetToPass,
+        marsYearsYetToPass,
+        mercuryYearsYetToPass,
+        venusYearsYetToPass,
+        jupiterYearsYetToPass
+    };
+}
+
+
+
     // calculateYearsYetToPass()
 }
 
@@ -66,8 +85,8 @@ describe('calculateAge', () => {
 });
 
 
-describe('calculateAge', () => {
-    test('it should take a person\'s age in years and return their age in Mars years', () => {
+describe('calculateYearsPassed', () => {
+    test('it should take a person\'s age and past birthday and return and the number of years passed for each planet', () => {
         const calculator = new Calculator();
         const yearsPassed = calculator.calculateYearsPassed(56, 43);
         expect(yearsPassed).toEqual({
@@ -81,3 +100,16 @@ describe('calculateAge', () => {
 
 });
 
+describe('calculateYearsYetToPass', () => {
+    test('it should take in a year and a future age and return the number of years until that future age is reached', () => {
+        const calculator = new Calculator();
+        const yearsYetToPass = calculator.calculateYearsYetToPass(36, 46);
+        expect(yearsYetToPass).toEqual({
+            earthYearsYetToPass: 10,
+            marsYearsYetToPass: 5.32,
+            mercuryYearsYetToPass: 41.67,
+            venusYearsYetToPass: 16.13,
+            jupiterYearsYetToPass: 0.84
+        });
+    });
+});
