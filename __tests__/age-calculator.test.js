@@ -4,7 +4,13 @@ describe('calculateAge', () => {
           this.number = number;
         }
         calculateMercuryAge() {
-            return Math.round(this.number / 0.24);
+            const mercuryAge = this.number / 0.24;
+            return Math.round(mercuryAge * 100) / 100;
+        }
+
+        calculateVenusAge() {
+            const venusAge = this.number / 0.62;
+            return Math.round(venusAge * 100) / 100; 
         }
       }
 
@@ -13,6 +19,12 @@ describe('calculateAge', () => {
         const mercuryAge = calculator.calculateMercuryAge();
         expect(mercuryAge).toBe(125);
       });
-    });
+    // });
 
     
+    test('it should correctly return a users age in Venus years', () =>{
+        const venusCalculator = new Calculator (20)
+        const venusAge = venusCalculator.calculateVenusAge();
+        expect(venusAge).toBe(32.26)
+    });
+});
